@@ -1,0 +1,2 @@
+module AvieHelper
+end

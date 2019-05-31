@@ -1,0 +1,54 @@
+// Place all the styles related to the avie controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.email{
+	background: #0055ff21;
+    padding: 40px;
+    padding-left: 48px;
+    border-radius: 21px;
+    margin: 39px 45px 0px 45px;
+}
+
+#admi{
+	margin-left: 55px;
+    font-size: 65px;
+    display: inline-block;
+}
+
+#user{
+	margin-left: 55px;
+    font-size: 42px;
+}
+
+#log-div{
+
+    margin: 0 auto;
+    width: fit-content;
+}
+#log{
+	font-size: 80px;
+	width: fit-content;
+    margin: 100px auto;
+}
+
+#pp{
+	font-size: 100px;
+    color: black;
+    text-decoration-line: none;
+    font-family: monospace;
+}
+
+#pp1{
+	display: inline-block;
+
+}
+
+#pp2{
+	display: inline-block;
+	font-size: 35px;
+}
+body{
+	padding: 20px;
+}

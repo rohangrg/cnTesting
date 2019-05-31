@@ -1,0 +1,34 @@
+<div id="top-div">
+	<h1 id = 'pp1'>Welcome <%= User.all.find_by(id: current_user.id).email%> !!!! </h1>
+	<%= link_to "Sign Out", destroy_user_session_path , method: :delete , :id => "pp2"%>
+</div>
+
+
+<% @emailinfo.each do |email|%>
+<% e =  Email.all.find_by(uniqueid: email.uniqueid) %>
+<div class = 'email'>
+	<div >
+		<h3><strong>Sender :</strong> <%=e.from%> </h3>
+		<p><strong>To :</strong> <%=e.to%></p> 
+		<p><strong>Subject :</strong> <%=e.subject%></p>
+		<p><strong>Timings :</strong> <%=e.timing%></p>
+	</div>
+	<hr>
+	<div">
+		<% if Emailinfo.all.find_by(uniqueid: e.uniqueid) == nil%>
+			<h3><strong>Status :</strong> Not Replied</h3>
+		<%elsif Emailinfo.all.find_by(uniqueid: e.uniqueid).status == nil%>
+			<h3><strong>Status :</strong> Not Replied</h3>
+		<%else%>
+			<h3><strong>Status :</strong> Replied</h3>
+		<%end%>
+		<%= form_tag(avie_reply_path, method: :post) do %>
+  			<%= text_field_tag :data, '', placeholder: "Reply Here", class: "project-start" %>
+  			<%= hidden_field_tag 'selectedemailto', e.from  %>
+  			<%= hidden_field_tag 'selectedemail', e.uniqueid  %>
+  			<%= submit_tag "Submit" %>
+		<% end %>
+</div>
+
+</div>
+<%end %>

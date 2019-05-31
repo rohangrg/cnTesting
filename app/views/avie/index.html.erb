@@ -1,0 +1,36 @@
+<div>
+	<h1 id = 'admi'>Admin</h1>
+	<%= link_to "Sign Out", destroy_user_session_path , method: :delete ,:id=> 'pp2'%>
+</div>
+
+<% @emails.each do |e|%>
+<div class = 'email'>
+	<div >
+		<h3><strong>Sender : </strong><%=e.from%> </h3>
+		<p><strong>To : </strong><%=e.to%></p> 
+		<p><strong>Subject : </strong><%=e.subject%></p>
+		<p><strong>Timings </strong><%=e.timing%></p>
+	</div>
+	<hr>
+	<div">
+		<% if Emailinfo.all.find_by(uniqueid: e.uniqueid) == nil%>
+			<h3><strong>Status :</strong> Not Replied</h3>
+		<%elsif Emailinfo.all.find_by(uniqueid: e.uniqueid).status == nil%>
+			<h3><strong>Status :</strong> Not Replied</h3>
+		<%else%>
+			<h3><strong>Status :</strong> Replied</h3>
+		<%end%>
+		<% if Emailinfo.all.find_by(uniqueid: e.uniqueid) == nil%>
+			<h3><strong>Assign to :</strong> No One</h3>
+		<%else%>
+			<h3><strong>Assign to :</strong> <%= User.all.find_by(id: Emailinfo.all.find_by(uniqueid: e.uniqueid).user_id).email%></h3>
+		<%end%>
+		<%= form_for @assign , url:avie_assign_path do |assin|%>
+			<%= hidden_field_tag 'selectedemail', e.uniqueid  %>
+			<%= assin.collection_select :user_id, User.all, :id, :email%>
+			<%=assin.submit "Assign"%>
+
+		<%end%>
+	</div>
+</div>
+<%end %>
